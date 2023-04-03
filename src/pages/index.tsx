@@ -3,12 +3,22 @@ import { type NextPage } from "next";
 import Head from "next/head";
 
 import { api } from "~/utils/api";
-import { SignIn, SignInButton, useAuth, useUser } from "@clerk/nextjs";
+import {
+  SignIn,
+  SignInButton,
+  SignOutButton,
+  useAuth,
+  useUser,
+} from "@clerk/nextjs";
 
 const Home: NextPage = () => {
-  const hello = api.example.hello.useQuery({ text: "from tRPC" });
+  const { data, isLoading } = api.recipes.getAll.useQuery();
   const { isSignedIn } = useAuth();
   const { user } = useUser();
+
+  // if (!isLoading) return <h1>loading</h1>;
+
+  // if (!data) return <h1>something went wrong</h1>;
 
   return (
     <>
@@ -18,13 +28,18 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        {isSignedIn && !!user && <h1>Hello {user.firstName}</h1>}
-        <div>
-          <SignInButton />
-        </div>
-        <div>
-          <SignIn path="/sign-in" routing="path" signUpUrl="/sign-up" />
-        </div>
+        {isSignedIn && !!user && (
+          <div>
+            <h1>Hello {user.firstName}</h1>
+            <SignOutButton />
+          </div>
+        )}
+
+        {!isSignedIn && !user?.id && (
+          <div>
+            <SignInButton />
+          </div>
+        )}
       </main>
     </>
   );

@@ -19,10 +19,12 @@ model Recipe {
 }
 
 model Ingredients {
-    id       String @id @default(cuid())
-    step     String
-    Recipe   Recipe @relation(fields: [recipeId], references: [id])
-    recipeId String
+    id          String @id @default(cuid())
+    ingredient  String
+    measurement String
+    quantity    Int
+    Recipe      Recipe @relation(fields: [recipeId], references: [id])
+    recipeId    String
 
     @@index([recipeId])
 }
