@@ -16,6 +16,14 @@ model Recipe {
     createdAt   DateTime      @default(now())
     updatedAt   DateTime      @updatedAt
     ingredients Ingredients[]
+    name        String
+    category    Category[]
+}
+
+model Category {
+    id     String       @id @default(cuid())
+    type   CategoryType
+    Recipe Recipe[]
 }
 
 model Ingredients {
@@ -27,4 +35,16 @@ model Ingredients {
     recipeId    String
 
     @@index([recipeId])
+}
+
+enum CategoryType {
+    BREAKFAST
+    LUNCH
+    DINNER
+    APPETIZER
+    DESSERT
+    SNACK
+    VEGETARIAN
+
+    Asian
 }
