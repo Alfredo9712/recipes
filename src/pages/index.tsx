@@ -15,6 +15,7 @@ const Home: NextPage = () => {
   const { data, isLoading } = api.recipes.getAll.useQuery();
   const { isSignedIn } = useAuth();
   const { user } = useUser();
+  console.log(data);
 
   // if (!isLoading) return <h1>loading</h1>;
 
