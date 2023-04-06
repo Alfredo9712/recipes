@@ -5,7 +5,7 @@ type Recipe = RouterOutputs["recipes"]["getAll"][number];
 
 export const RecipeCard: FC<Recipe> = (props) => {
   const { name, rating, views } = props;
-  console.log(name);
+
   return (
     <div>
       <h2>{name}</h2>
