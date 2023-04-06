@@ -7,7 +7,7 @@ import {
 } from "~/server/api/trpc";
 
 export const recipesRouter = createTRPCRouter({
-  getAll: privateProcedure.query(({ ctx }) => {
+  getAll: publicProcedure.query(({ ctx }) => {
     return ctx.prisma.recipe.findMany();
   }),
 });

@@ -12,14 +12,10 @@ import {
 } from "@clerk/nextjs";
 
 const Home: NextPage = () => {
-  const { data, isLoading } = api.recipes.getAll.useQuery();
   const { isSignedIn } = useAuth();
   const { user } = useUser();
-  console.log(data);
 
-  // if (!isLoading) return <h1>loading</h1>;
-
-  // if (!data) return <h1>something went wrong</h1>;
+  api.recipes.getAll.useQuery();
 
   return (
     <>
@@ -35,7 +31,6 @@ const Home: NextPage = () => {
             <SignOutButton />
           </div>
         )}
-
         {!isSignedIn && !user?.id && (
           <div>
             <SignInButton />
