@@ -1,7 +1,9 @@
-import { api } from "~/utils/api";
+import { FC } from "react";
+import { RouterOutputs } from "~/utils/api";
 
-export const RecipeCard = () => {
-  const { data, isLoading } = api.recipes.getAll.useQuery();
+type Recipe = RouterOutputs["recipes"]["getAll"][number];
 
+export const RecipeCard: FC<Recipe> = (props) => {
+  const { name } = props;
   return <h2>Recipe Card</h2>;
 };

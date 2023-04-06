@@ -10,11 +10,13 @@ import {
   useAuth,
   useUser,
 } from "@clerk/nextjs";
+import { RecipeCard } from "~/components/RecipeCard";
 
 const Home: NextPage = () => {
   const { isSignedIn } = useAuth();
   const { user } = useUser();
 
+  // start fetching recipes right away
   api.recipes.getAll.useQuery();
 
   return (
