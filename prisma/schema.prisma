@@ -18,6 +18,8 @@ model Recipe {
     ingredients Ingredients[]
     name        String
     category    Category[]
+    rating      Float
+    views       Int
 }
 
 model Category {
