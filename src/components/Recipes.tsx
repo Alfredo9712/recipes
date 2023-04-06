@@ -8,10 +8,11 @@ const Recipes = () => {
   if (isLoading) return <h1>loading</h1>;
 
   if (!recipes) return <h1>No Current Recipes, they are on the way!</h1>;
+
   return (
     <div>
-      {recipes.map((recipe) => (
-        <RecipeCard key={recipe.id} />
+      {[...recipes, ...recipes].map((recipe) => (
+        <RecipeCard key={recipe.id} {...recipe} />
       ))}
     </div>
   );

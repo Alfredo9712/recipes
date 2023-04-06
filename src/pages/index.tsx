@@ -1,16 +1,12 @@
-import styles from "./index.module.css";
-import { type NextPage } from "next";
+import type { NextPage } from "next";
+import { SignInButton, SignOutButton, useAuth, useUser } from "@clerk/nextjs";
+
 import Head from "next/head";
+import Recipes from "~/components/Recipes";
 
 import { api } from "~/utils/api";
-import {
-  SignIn,
-  SignInButton,
-  SignOutButton,
-  useAuth,
-  useUser,
-} from "@clerk/nextjs";
-import { RecipeCard } from "~/components/RecipeCard";
+
+import styles from "./index.module.css";
 
 const Home: NextPage = () => {
   const { isSignedIn } = useAuth();
@@ -38,6 +34,7 @@ const Home: NextPage = () => {
             <SignInButton />
           </div>
         )}
+        <Recipes />
       </main>
     </>
   );
