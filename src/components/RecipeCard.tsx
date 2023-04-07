@@ -8,21 +8,18 @@ import styles from "../styles/modules/RecipeCard.module.scss";
 type Recipe = RouterOutputs["recipes"]["getAll"][number];
 
 export const RecipeCard: FC<Recipe> = (props) => {
-  const { name, rating, views, img } = props;
-
+  const { name, img, id } = props;
+  console.log(img);
   return (
-    <div className={styles.recipeCard}>
-      <div className={styles.cardImgWrapper}>
-        <Image
-          src={String(img)}
-          fill
-          alt={`recipe image for ${String(name)}`}
-          className={styles.img}
-        />
+    <div
+      className={styles.recipeCard}
+      style={{
+        backgroundImage: `url(${String(img)})`,
+      }}
+    >
+      <div className={styles.cardContent}>
+        <h2>{`${String(name)}`}</h2>
       </div>
-      <h2>{name}</h2>
-      <h3>Rating - {rating}</h3>
-      <h4>Views - {views}</h4>
     </div>
   );
 };

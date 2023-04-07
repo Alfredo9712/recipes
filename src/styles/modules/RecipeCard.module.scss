@@ -1,12 +1,20 @@
 .recipeCard {
-  .cardImgWrapper {
-    position: relative;
-    width: 20rem;
-    height: 20rem;
-    // overflow: hidden;
-    background-color: blue;
-    .img {
-      object-fit: cover;
+  width: 350px;
+  height: 450px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 20px;
+  padding: 20px;
+  .cardContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+    color: white;
+    text-transform: capitalize;
+    h2 {
+      font-weight: 700;
     }
   }
 }
