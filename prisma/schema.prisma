@@ -21,6 +21,7 @@ model Recipe {
     rating      Float
     views       Int
     img         String
+    duration    Int
 }
 
 model Category {
