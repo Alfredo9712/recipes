@@ -31,11 +31,11 @@ model Category {
 }
 
 model Ingredients {
-    id          String @id @default(cuid())
+    id          String  @id @default(cuid())
     ingredient  String
-    measurement String
+    measurement String?
     quantity    Int
-    Recipe      Recipe @relation(fields: [recipeId], references: [id])
+    Recipe      Recipe  @relation(fields: [recipeId], references: [id])
     recipeId    String
 
     @@index([recipeId])
