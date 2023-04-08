@@ -15,7 +15,9 @@ interface DurationProps {
 const Duration: FC<DurationProps> = (props) => {
   const { h, m } = toHoursAndMinutes(props.seconds);
 
-  return null;
+  if (h) return <p>{`${h}`} hrs</p>;
+
+  return <p>{`${m}`} mins</p>;
 };
 
 type RecipeProps = RouterOutputs["recipes"]["getAll"][number];
