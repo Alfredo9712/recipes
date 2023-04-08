@@ -34,7 +34,7 @@ model Ingredients {
     id          String  @id @default(cuid())
     ingredient  String
     measurement String?
-    quantity    Int
+    quantity    Float
     Recipe      Recipe  @relation(fields: [recipeId], references: [id])
     recipeId    String
 
@@ -49,6 +49,4 @@ enum CategoryType {
     DESSERT
     SNACK
     VEGETARIAN
-
-    Asian
 }
