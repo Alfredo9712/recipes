@@ -8,6 +8,8 @@ import {
 
 export const recipesRouter = createTRPCRouter({
   getAll: publicProcedure.query(({ ctx }) => {
-    return ctx.prisma.recipe.findMany();
+    return ctx.prisma.recipe.findMany({
+      include: { ingredients: true },
+    });
   }),
 });

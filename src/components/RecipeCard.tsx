@@ -24,19 +24,21 @@ const Duration: FC<DurationProps> = (props) => {
 type RecipeProps = RouterOutputs["recipes"]["getAll"][number];
 
 export const RecipeCard: FC<RecipeProps> = (props) => {
-  const { name, img, id, duration } = props;
+  const { name, img, duration, ingredients } = props;
 
   return (
-    <div
-      className={styles.recipeCard}
-      style={{
-        backgroundImage: `url(${img})`,
-      }}
-    >
-      <div className={styles.cardContent}>
+    <div className={styles.recipeCard}>
+      <div
+        className={styles.cardContent}
+        style={{
+          backgroundImage: `url(${img})`,
+        }}
+      >
         <h2>{`${name}`}</h2>
         <Spacer height={5} />
         <div className={styles.recipeInfo}>
+          <p>{`${ingredients.length}`} Ingredients</p>
+          <div className={styles.border} />
           <Duration seconds={duration} />
         </div>
       </div>
