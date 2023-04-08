@@ -6,7 +6,7 @@ export const RecipeCardSkeleton = () => {
     <div className={styles.recipeCardSkeleton}>
       <div className={styles.textWrapper}>
         <div className={styles.title} />
-        <Spacer height={10} />
+        <Spacer height={15} />
         <div className={styles.info}>
           <div className={styles.infoItem} />
           <div className={styles.infoItem} />

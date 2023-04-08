@@ -17,7 +17,6 @@ export const Recipes = () => {
       {[...recipes, ...recipes].map((recipe) => (
         <RecipeCard key={recipe.id} {...recipe} />
       ))}
-      <RecipeCardSkeleton />;
     </div>
   );
 };
