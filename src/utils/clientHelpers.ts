@@ -1,1 +1,8 @@
-export const convertSecondsToMins = (seconds: number) => seconds / 60;
+export const toHoursAndMinutes = (totalSeconds: number) => {
+  const totalMinutes = Math.floor(totalSeconds / 60);
+
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
+
+  return { h: hours, m: minutes };
+};
