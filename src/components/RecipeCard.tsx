@@ -5,6 +5,7 @@ import type { RouterOutputs } from "~/utils/api";
 import { toHoursAndMinutes } from "~/utils/clientHelpers";
 
 import styles from "../styles/modules/RecipeCard.module.scss";
+import { Spacer } from "./Spacer";
 
 type DurationType = RouterOutputs["recipes"]["getAll"][number]["duration"];
 
@@ -34,6 +35,7 @@ export const RecipeCard: FC<RecipeProps> = (props) => {
     >
       <div className={styles.cardContent}>
         <h2>{`${name}`}</h2>
+        <Spacer height={5} />
         <div className={styles.recipeInfo}>
           <Duration seconds={duration} />
         </div>
