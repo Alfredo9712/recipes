@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import { SignInButton, SignOutButton, useAuth, useUser } from "@clerk/nextjs";
 
 import Head from "next/head";
-import Recipes from "~/components/Recipes";
+import { Recipes } from "~/components/Recipes";
 
 import { api } from "~/utils/api";
 

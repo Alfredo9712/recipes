@@ -1,7 +1,9 @@
+@use "/src/styles/vars/recipeCardVars.scss" as *;
+
 .recipeCard {
-  width: 350px;
-  height: 450px;
-  border-radius: 30px;
+  width: $width;
+  height: $height;
+  border-radius: $border-radius;
   overflow: hidden;
   .cardContent {
     padding: 20px;
