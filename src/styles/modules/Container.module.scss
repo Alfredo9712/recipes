@@ -1,0 +1,12 @@
+@use "/src/styles/vars/appContainerVars.scss" as *;
+
+.container {
+  width: 100vw;
+  margin: 0 auto;
+}
+
+@media only screen and (min-width: $desktop) {
+  .container {
+    max-width: 1700px;
+  }
+}

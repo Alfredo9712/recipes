@@ -1,0 +1,27 @@
+@use "/src/styles/vars/appContainerVars.scss" as *;
+
+.recipes {
+  max-width: 280px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media only screen and (min-width: $tablet) {
+  .recipes {
+    display: flex;
+    max-width: unset;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (min-width: $desktop) {
+  .recipes {
+    display: flex;
+    max-width: unset;
+    flex-wrap: wrap;
+    justify-content: unset;
+    margin: 0 auto;
+  }
+}
