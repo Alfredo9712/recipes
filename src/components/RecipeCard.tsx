@@ -1,4 +1,7 @@
+import Link from "next/link";
+import { useRouter } from "next/router";
 import type { FC } from "react";
+import { api } from "~/utils/api";
 import type { RouterOutputs } from "~/utils/api";
 import { toHoursAndMinutes } from "~/utils/clientHelpers";
 
@@ -22,24 +25,34 @@ const Duration: FC<DurationProps> = (props) => {
 type RecipeProps = RouterOutputs["recipes"]["getAll"][number];
 
 export const RecipeCard: FC<RecipeProps> = (props) => {
-  const { name, img, duration, ingredients } = props;
+  const { name, img, duration, ingredients, id } = props;
+
+  const ctx = api.useContext();
+
+  const { mutate } = api.recipes.updateViewCount.useMutation({
+    onSuccess: () => {
+      void ctx.recipes.getAll.invalidate();
+    },
+  });
 
   return (
-    <div className={styles.recipeCard}>
-      <div
-        className={styles.cardContent}
-        style={{
-          backgroundImage: `url(${img})`,
-        }}
-      >
-        <h2>{`${name}`}</h2>
-        <Spacer height={5} />
-        <div className={styles.recipeInfo}>
-          <p>{`${ingredients.length}`} Ingredients</p>
-          <div className={styles.border} />
-          <Duration seconds={duration} />
+    <div className={styles.recipeCard} onClick={() => mutate({ id })}>
+      <Link href={`/recipe/${id}`}>
+        <div
+          className={styles.cardContent}
+          style={{
+            backgroundImage: `url(${img})`,
+          }}
+        >
+          <h2>{`${name}`}</h2>
+          <Spacer height={5} />
+          <div className={styles.recipeInfo}>
+            <p>{`${ingredients.length}`} Ingredients</p>
+            <div className={styles.border} />
+            <Duration seconds={duration} />
+          </div>
         </div>
-      </div>
+      </Link>
     </div>
   );
 };
