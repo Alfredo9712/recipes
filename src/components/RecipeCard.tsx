@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 import type { FC } from "react";
 import type { RouterOutputs } from "~/utils/api";
 import { toHoursAndMinutes } from "~/utils/clientHelpers";

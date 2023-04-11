@@ -1,8 +1,8 @@
 @use "/src/styles/vars/recipeCardVars.scss" as *;
 
 .recipeCardSkeleton {
-  width: $width;
-  height: $height;
+  width: $mobile-width;
+  height: $mobile-height;
   border-radius: $border-radius;
   padding: $padding;
   border: 1px #f0f0f0 solid;

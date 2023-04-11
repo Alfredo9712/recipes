@@ -1,15 +1,16 @@
 @use "/src/styles/vars/recipeCardVars.scss" as *;
+@use "/src/styles/vars/appContainerVars.scss" as *;
 
 .recipeCard {
-  width: $width;
-  height: $height;
+  width: 100%;
+  height: 380px;
   border-radius: $border-radius;
   overflow: hidden;
   .cardContent {
     padding: 20px;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 100%;
+    background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -32,7 +33,25 @@
       }
     }
   }
-  .cardContent:hover {
-    background-size: 105%;
+}
+
+@media only screen and (min-width: $tablet) {
+  .recipeCard {
+    width: $tablet-width;
+    height: $tablet-height;
+    margin: 1.5rem 1.5rem;
+    .cardContent {
+      background-size: 100%;
+    }
+    .cardContent:hover {
+      background-size: 105%;
+    }
+  }
+}
+
+@media only screen and (min-width: $desktop) {
+  .recipeCard {
+    width: $desktop-width;
+    height: $desktop-height;
   }
 }
