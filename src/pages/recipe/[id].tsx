@@ -1,3 +1,5 @@
-export const Recipe = () => {
+const Recipe = () => {
   return null;
 };
+
+export default Recipe;
