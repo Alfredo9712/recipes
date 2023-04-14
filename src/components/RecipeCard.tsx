@@ -36,7 +36,7 @@ export const RecipeCard: FC<RecipeProps> = (props) => {
   });
 
   return (
-    <div className={styles.recipeCard} onClick={() => mutate({ id })}>
+    <div className={styles.recipeCard}>
       <Link href={`/recipe/${id}`}>
         <div
           className={styles.cardContent}
