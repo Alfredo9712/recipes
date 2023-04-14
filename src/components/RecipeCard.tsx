@@ -29,12 +29,6 @@ export const RecipeCard: FC<RecipeProps> = (props) => {
 
   const ctx = api.useContext();
 
-  const { mutate } = api.recipes.updateViewCount.useMutation({
-    onSuccess: () => {
-      void ctx.recipes.getAll.invalidate();
-    },
-  });
-
   return (
     <div className={styles.recipeCard}>
       <Link href={`/recipe/${id}`}>
