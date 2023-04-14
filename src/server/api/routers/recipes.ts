@@ -12,7 +12,7 @@ export const recipesRouter = createTRPCRouter({
       include: { ingredients: true },
     });
   }),
-  getRecipe: publicProcedure
+  getById: publicProcedure
     .input(z.object({ id: z.string() }))
     .query(({ ctx, input }) => {
       return ctx.prisma.recipe.findUnique({
@@ -20,7 +20,7 @@ export const recipesRouter = createTRPCRouter({
         include: { ingredients: true },
       });
     }),
-  updateViewCount: publicProcedure
+  favorite: publicProcedure
     .input(z.object({ id: z.string() }))
     .mutation(async ({ ctx, input }) => {
       const recipe = await ctx.prisma.recipe.update({
@@ -28,7 +28,7 @@ export const recipesRouter = createTRPCRouter({
           id: input.id,
         },
         data: {
-          views: {
+          favorites: {
             increment: 1,
           },
         },
