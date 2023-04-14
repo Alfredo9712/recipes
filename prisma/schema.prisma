@@ -22,6 +22,7 @@ model Recipe {
     views       Int
     img         String
     duration    Int
+    favorites   Int           @default(0)
 }
 
 model Category {
