@@ -25,6 +25,10 @@
     .recipeInfo {
       display: flex;
       gap: 5px;
+      p {
+        font-size: 18px;
+        font-weight: 400;
+      }
       .border {
         height: 1.1em;
         margin-top: auto;
