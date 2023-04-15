@@ -1,19 +1,24 @@
+import { prisma } from "~/server/db";
 import { TRPCError } from "@trpc/server";
 
-import type { GetStaticProps } from "next";
-import type { FC } from "react";
+import Head from "next/head";
 
-import { generateSSGHelper } from "~/server/helpers/sshHelper";
+import type { FC } from "react";
+import type { GetStaticProps } from "next";
+
 import { api } from "~/utils/api";
+import { generateSSGHelper } from "~/server/helpers/sshHelper";
 
 const Recipe: FC<{ recipeId: string }> = ({ recipeId }) => {
-  const ctx = api.useContext();
-
   const { data: recipe, isLoading } = api.recipes.getById.useQuery({
     id: recipeId,
   });
 
-  const { mutate, isLoading: isFavoriting } = api.recipes.favorite.useMutation({
+  const ctx = api.useContext();
+
+  if (!recipe) return <p>Recipe not found</p>;
+
+  const { mutate } = api.recipes.favorite.useMutation({
     onSuccess: () => {
       void ctx.recipes.getById.invalidate({ id: recipeId });
     },
@@ -24,10 +29,15 @@ const Recipe: FC<{ recipeId: string }> = ({ recipeId }) => {
   if (!recipe) return <p>Recipe not found</p>;
 
   return (
-    <div>
-      <p>favorites: {recipe.favorites} </p>
-      <button onClick={() => mutate({ id: recipeId })}>Favorite</button>
-    </div>
+    <>
+      <Head>
+        <title>{recipe.name}</title>
+      </Head>
+      <div>
+        <p>favorites: {recipe.favorites} </p>
+        <button onClick={() => mutate({ id: recipeId })}>Favorite</button>
+      </div>
+    </>
   );
 };
 
@@ -49,8 +59,18 @@ export const getStaticProps: GetStaticProps = async (context) => {
   };
 };
 
-export const getStaticPaths = () => {
-  return { paths: [], fallback: "blocking" };
+export const getStaticPaths = async () => {
+  const recipes = await prisma.recipe.findMany({ select: { id: true } });
+
+  return {
+    paths: recipes.map((post) => ({
+      params: {
+        id: post.id,
+      },
+    })),
+    // https://nextjs.org/docs/api-reference/data-fetching/get-static-paths#fallback-blocking
+    fallback: "blocking",
+  };
 };
 
 export default Recipe;
