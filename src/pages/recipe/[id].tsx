@@ -18,7 +18,7 @@ const Recipe: FC<{ recipeId: string }> = ({ recipeId }) => {
 
   if (!recipe) return <p>Recipe not found</p>;
 
-  const { mutate } = api.recipes.favorite.useMutation({
+  const { mutate, isLoading: isFavoriting } = api.recipes.favorite.useMutation({
     onSuccess: () => {
       void ctx.recipes.getById.invalidate({ id: recipeId });
     },
@@ -35,7 +35,12 @@ const Recipe: FC<{ recipeId: string }> = ({ recipeId }) => {
       </Head>
       <div>
         <p>favorites: {recipe.favorites} </p>
-        <button onClick={() => mutate({ id: recipeId })}>Favorite</button>
+        <button
+          onClick={() => mutate({ id: recipeId })}
+          disabled={isFavoriting}
+        >
+          Favorite
+        </button>
       </div>
     </>
   );
