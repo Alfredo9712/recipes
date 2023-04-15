@@ -9,9 +9,11 @@
 @media only screen and (min-width: $tablet) {
   .recipes {
     display: flex;
+    background-color: red;
     max-width: unset;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
+    gap: 20px;
     margin: 0 auto;
   }
 }
