@@ -29,8 +29,6 @@ type RecipeProps = RouterOutputs["recipes"]["getAll"][number];
 export const RecipeCard: FC<RecipeProps> = (props) => {
   const { name, img, duration, ingredients, id } = props;
 
-  const ctx = api.useContext();
-
   return (
     <div className={styles.recipeCard}>
       <Link href={`/recipe/${id}`}>
