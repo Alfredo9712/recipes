@@ -8,37 +8,30 @@ import type { Dispatch, FC, SetStateAction } from "react";
 import styles from "../styles/modules/Categories.module.scss";
 
 interface CategoriesProps {
-  setSelectedCategory: Dispatch<SetStateAction<string>>;
-  selectedCategory: string;
+  setCategory: Dispatch<
+    SetStateAction<{
+      selected: CategoryType;
+    }>
+  >;
+  category: {
+    selected: CategoryType;
+  };
 }
 
-export const Categories: FC<CategoriesProps> = ({
-  setSelectedCategory,
-  selectedCategory,
-}) => {
+export const Categories: FC<CategoriesProps> = ({ category, setCategory }) => {
   return (
     <div className={styles.categories}>
-      <div
-        className={classNames(styles.category, {
-          [styles.selectedCategory as string]: selectedCategory === "all",
-        })}
-        onClick={() => setSelectedCategory("all")}
-      >
-        <p>All</p>
-        <Spacer height={5} />
-        <div className={styles.selectedBorder} />
-      </div>
-      {Object.keys(CategoryType).map((category) => {
-        const isSelected = category === selectedCategory;
+      {Object.values(CategoryType).map((c) => {
+        const isSelected = c === category["selected"];
         return (
           <div
-            key={category}
+            key={c}
             className={classNames(styles.category, {
               [styles.selectedCategory as string]: isSelected,
             })}
-            onClick={() => setSelectedCategory(category)}
+            onClick={() => setCategory({ selected: c })}
           >
-            <p>{`${category}`}</p>
+            <p>{`${c}`}</p>
             <Spacer height={5} />
             <div className={styles.selectedBorder} />
           </div>

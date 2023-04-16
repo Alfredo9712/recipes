@@ -43,6 +43,7 @@ model Ingredients {
 }
 
 enum CategoryType {
+    ALL
     BREAKFAST
     LUNCH
     DINNER

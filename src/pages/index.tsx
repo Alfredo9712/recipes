@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import { CategoryType } from "@prisma/client";
 
 import Head from "next/head";
 import { useState } from "react";
@@ -10,12 +11,14 @@ import { api } from "~/utils/api";
 
 import styles from "../styles/modules/Home.module.scss";
 
+// const categoryTypes = Object.values(CategoryType);
+
 const Home: NextPage = () => {
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [category, setCategory] = useState<{ selected: CategoryType }>({
+    selected: "ALL",
+  });
   // start fetching recipes right away
   api.recipes.getAll.useQuery();
-
-  api.categories.getAll.useQuery();
 
   return (
     <>
@@ -27,12 +30,9 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <h1>Recipes</h1>
         <Spacer height={45} />
-        <Categories
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
-        />
+        <Categories category={category} setCategory={setCategory} />
         <Spacer height={45} />
-        <Recipes />
+        <Recipes category={category} />
       </main>
     </>
   );
