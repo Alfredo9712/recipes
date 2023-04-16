@@ -1,5 +1,4 @@
 import type { NextPage } from "next";
-import { SignInButton, SignOutButton, useAuth, useUser } from "@clerk/nextjs";
 
 import Head from "next/head";
 import { Recipes } from "~/components/Recipes";
@@ -9,9 +8,6 @@ import { api } from "~/utils/api";
 import styles from "./index.module.css";
 
 const Home: NextPage = () => {
-  const { isSignedIn } = useAuth();
-  const { user } = useUser();
-
   // start fetching recipes right away
   api.recipes.getAll.useQuery();
 
@@ -23,17 +19,6 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        {isSignedIn && !!user && (
-          <div>
-            <h1>Hello {user.firstName}</h1>
-            <SignOutButton />
-          </div>
-        )}
-        {!isSignedIn && !user?.id && (
-          <div>
-            <SignInButton />
-          </div>
-        )}
         <Recipes />
       </main>
     </>
