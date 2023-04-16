@@ -1,2 +1,7 @@
 .categories {
+  display: flex;
+  gap: 20px;
+  .category {
+    cursor: pointer;
+  }
 }

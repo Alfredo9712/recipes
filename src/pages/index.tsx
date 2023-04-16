@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 
 import Head from "next/head";
+import { useState } from "react";
 import { Categories } from "~/components/Categories";
 import { Recipes } from "~/components/Recipes";
 import { Spacer } from "~/components/Spacer";
@@ -10,8 +11,11 @@ import { api } from "~/utils/api";
 import styles from "../styles/modules/Home.module.scss";
 
 const Home: NextPage = () => {
+  const [category, setCategory] = useState("all");
   // start fetching recipes right away
   api.recipes.getAll.useQuery();
+
+  api.categories.getAll.useQuery();
 
   return (
     <>
@@ -23,7 +27,7 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <h1>Romantic Dinners</h1>
         <Spacer height={40} />
-        <Categories />
+        <Categories setCategory={setCategory} />
         <Spacer height={40} />
         <Recipes />
       </main>
