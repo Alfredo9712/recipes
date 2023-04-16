@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 
 import Head from "next/head";
-
+import { Categories } from "~/components/Categories";
 import { Recipes } from "~/components/Recipes";
 import { Spacer } from "~/components/Spacer";
 
@@ -22,6 +22,8 @@ const Home: NextPage = () => {
       </Head>
       <main className={styles.main}>
         <h1>Romantic Dinners</h1>
+        <Spacer height={40} />
+        <Categories />
         <Spacer height={40} />
         <Recipes />
       </main>
