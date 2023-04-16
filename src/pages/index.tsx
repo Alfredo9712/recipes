@@ -11,7 +11,7 @@ import { api } from "~/utils/api";
 import styles from "../styles/modules/Home.module.scss";
 
 const Home: NextPage = () => {
-  const [category, setCategory] = useState("all");
+  const [selectedCategory, setSelectedCategory] = useState("");
   // start fetching recipes right away
   api.recipes.getAll.useQuery();
 
@@ -25,10 +25,13 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <h1>Romantic Dinners</h1>
-        <Spacer height={40} />
-        <Categories setCategory={setCategory} />
-        <Spacer height={40} />
+        <h1>Recipes</h1>
+        <Spacer height={45} />
+        <Categories
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+        />
+        <Spacer height={45} />
         <Recipes />
       </main>
     </>

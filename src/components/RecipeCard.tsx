@@ -5,7 +5,6 @@ import { Spacer } from "./Spacer";
 import type { FC } from "react";
 import type { RouterOutputs } from "~/utils/api";
 
-import { api } from "~/utils/api";
 import { toHoursAndMinutes } from "~/utils/clientHelpers";
 
 import styles from "../styles/modules/RecipeCard.module.scss";

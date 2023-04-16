@@ -1,7 +1,24 @@
+@use "/src/styles/vars/appContainerVars.scss" as *;
+
 .categories {
   display: flex;
-  gap: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
   .category {
     cursor: pointer;
+  }
+  .selectedCategory {
+    color: #3f6331;
+    .selectedBorder {
+      border-bottom: 3px solid #3f6331;
+      border-radius: 5px;
+    }
+  }
+}
+
+@media only screen and (min-width: $tablet) {
+  .categories {
+    gap: 20px;
+    height: 32px;
   }
 }
