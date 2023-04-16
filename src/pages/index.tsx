@@ -1,11 +1,13 @@
 import type { NextPage } from "next";
 
 import Head from "next/head";
+
 import { Recipes } from "~/components/Recipes";
+import { Spacer } from "~/components/Spacer";
 
 import { api } from "~/utils/api";
 
-import styles from "./index.module.css";
+import styles from "../styles/modules/Home.module.scss";
 
 const Home: NextPage = () => {
   // start fetching recipes right away
@@ -19,6 +21,8 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
+        <h1>Romantic Dinners</h1>
+        <Spacer height={40} />
         <Recipes />
       </main>
     </>
