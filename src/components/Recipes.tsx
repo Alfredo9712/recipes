@@ -1,18 +1,14 @@
-import React, {
-  Dispatch,
-  FC,
-  SetStateAction,
-  useEffect,
-  useState,
-} from "react";
+import React, { useEffect, useState } from "react";
 
 import { RecipeCard } from "./RecipeCard";
 import { RecipeCardSkeleton } from "./Skeletons/RecipeCardSkeleton";
 
-import { api, RouterOutputs } from "~/utils/api";
+import type { FC } from "react";
+import type { RouterOutputs } from "~/utils/api";
+import type { CategoryType } from "@prisma/client";
+import { api } from "~/utils/api";
 
 import styles from "../styles/modules/Recipes.module.scss";
-import { CategoryType } from "@prisma/client";
 
 interface RecipesProps {
   category: {
@@ -39,6 +35,7 @@ export const Recipes: FC<RecipesProps> = ({ category }) => {
       }
     }
   }, [isLoading, category]);
+
   if (isLoading)
     return (
       <div className={styles.recipes}>
