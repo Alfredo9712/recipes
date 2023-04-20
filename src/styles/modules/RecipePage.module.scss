@@ -1,0 +1,12 @@
+.recipePage {
+  background-color: red;
+  display: flex;
+  justify-content: space-between;
+  .imgContainer {
+    position: relative;
+    width: 30%;
+    height: 30rem;
+  }
+  .recipeInfo {
+  }
+}

@@ -9,6 +9,9 @@ import type { GetStaticProps } from "next";
 import { api } from "~/utils/api";
 import { generateSSGHelper } from "~/server/helpers/sshHelper";
 
+import styles from "../../styles/modules/RecipePage.module.scss";
+import Image from "next/image";
+
 const Recipe: FC<{ recipeId: string }> = ({ recipeId }) => {
   const { data: recipe, isLoading } = api.recipes.getById.useQuery({
     id: recipeId,
@@ -33,14 +36,34 @@ const Recipe: FC<{ recipeId: string }> = ({ recipeId }) => {
       <Head>
         <title>{recipe.name}</title>
       </Head>
-      <div>
-        <p>favorites: {recipe.favorites} </p>
-        <button
+      <div className={styles.recipePage}>
+        <div className={styles.imgContainer}>
+          <Image
+            src={recipe.img}
+            alt={`Recipe image for ${recipe.name}`}
+            fill
+            style={{ objectFit: "contain" }}
+          />
+        </div>
+        <div className={styles.recipeInfo}>
+          <h1>{recipe.name}</h1>
+          <div className={styles.ingredients}>
+            <ul>
+              {recipe.ingredients.map((ingredient) => {
+                return (
+                  <li key={ingredient.id}>{`${ingredient.ingredient}`}</li>
+                );
+              })}
+            </ul>
+          </div>
+        </div>
+        {/* <p>favorites: {recipe.favorites} </p> */}
+        {/* <button
           onClick={() => mutate({ id: recipeId })}
           disabled={isFavoriting}
         >
           Favorite
-        </button>
+        </button> */}
       </div>
     </>
   );
