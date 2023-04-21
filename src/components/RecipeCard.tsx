@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 import { Spacer } from "./Spacer";
 
@@ -17,6 +18,7 @@ interface DurationProps {
 
 const Duration: FC<DurationProps> = (props) => {
   const { h, m } = toHoursAndMinutes(props.seconds);
+
   if (h) return <p>{`${h}`} hrs</p>;
 
   return <p>{`${m}`} mins</p>;
@@ -26,27 +28,25 @@ type RecipeProps = RouterOutputs["recipes"]["getAll"][number];
 
 export const RecipeCard: FC<RecipeProps> = (props) => {
   const { name, img, duration, ingredients, id } = props;
-  const router = useRouter();
 
   return (
-    <div
-      className={styles.recipeCard}
-      onClick={() => void router.push(`/test`)}
-    >
-      <div
-        className={styles.cardContent}
-        style={{
-          backgroundImage: `url(${img})`,
-        }}
-      >
-        <h2>{`${name}`}</h2>
-        <Spacer height={5} />
-        <div className={styles.recipeInfo}>
-          <p>{`${ingredients.length}`} Ingredients</p>
-          <div className={styles.border} />
-          <Duration seconds={duration} />
+    <div className={styles.recipeCard}>
+      <Link href={`/recipe/${id}`}>
+        <div
+          className={styles.cardContent}
+          style={{
+            backgroundImage: `url(${img})`,
+          }}
+        >
+          <h2>{`${name}`}</h2>
+          <Spacer height={5} />
+          <div className={styles.recipeInfo}>
+            <p>{`${ingredients.length}`} Ingredients</p>
+            <div className={styles.border} />
+            <Duration seconds={duration} />
+          </div>
         </div>
-      </div>
+      </Link>
     </div>
   );
 };

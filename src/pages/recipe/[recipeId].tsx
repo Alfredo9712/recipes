@@ -37,7 +37,7 @@ const RecipeId: FC<{ recipeId: string }> = ({ recipeId }) => {
       <Head>
         <title>{recipe.name}</title>
       </Head>
-      <div className={styles.recipePage}>
+      {/* <div className={styles.recipePage}>
         <div className={styles.imgContainer}>
           <Image
             src={recipe.img}
@@ -57,40 +57,37 @@ const RecipeId: FC<{ recipeId: string }> = ({ recipeId }) => {
               })}
             </ul>
           </div>
-        </div>
-        <p>page</p>
-        {/* <p>favorites: {recipe.favorites} </p> */}
-        {/* <button
-          onClick={() => mutate({ id: recipeId })}
-          disabled={isFavoriting}
-        >
-          Favorite
-        </button> */}
-      </div>
+        </div> */}
+      {/* <p>page</p> */}
+      <p>favorites: {recipe.favorites} </p>
+      <button onClick={() => mutate({ id: recipeId })} disabled={isFavoriting}>
+        Favorite
+      </button>
+      {/* </div> */}
     </>
   );
 };
 
-// export const getStaticProps: GetStaticProps = async (context) => {
-//   const ssg = generateSSGHelper();
+export const getStaticProps: GetStaticProps = async (context) => {
+  const ssg = generateSSGHelper();
 
-//   const recipeId = context.params?.recipeId;
+  const recipeId = context.params?.recipeId;
 
-//   if (typeof recipeId !== "string")
-//     throw new TRPCError({ code: "BAD_REQUEST" });
+  if (typeof recipeId !== "string")
+    throw new TRPCError({ code: "BAD_REQUEST" });
 
-//   await ssg.recipes.getById.prefetch({ id: recipeId });
+  await ssg.recipes.getById.prefetch({ id: recipeId });
 
-//   return {
-//     props: {
-//       trpcState: ssg.dehydrate(),
-//       recipeId,
-//     },
-//   };
-// };
+  return {
+    props: {
+      trpcState: ssg.dehydrate(),
+      recipeId,
+    },
+  };
+};
 
-// export const getStaticPaths = () => {
-//   return { paths: [], fallback: "blocking" };
-// };
+export const getStaticPaths = () => {
+  return { paths: [], fallback: "blocking" };
+};
 
 export default RecipeId;
