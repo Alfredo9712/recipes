@@ -87,18 +87,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
   };
 };
 
-export const getStaticPaths = async () => {
-  const recipes = await prisma.recipe.findMany({ select: { id: true } });
-
-  return {
-    paths: recipes.map((post) => ({
-      params: {
-        id: post.id,
-      },
-    })),
-    // https://nextjs.org/docs/api-reference/data-fetching/get-static-paths#fallback-blocking
-    fallback: "blocking",
-  };
+export const getStaticPaths = () => {
+  return { paths: [], fallback: "blocking" };
 };
 
 export default Recipe;
