@@ -1,4 +1,5 @@
-import { prisma } from "~/server/db";
+import React from "react";
+
 import { TRPCError } from "@trpc/server";
 
 import Head from "next/head";
@@ -12,7 +13,7 @@ import { generateSSGHelper } from "~/server/helpers/sshHelper";
 import styles from "../../styles/modules/RecipePage.module.scss";
 import Image from "next/image";
 
-const Recipe: FC<{ recipeId: string }> = ({ recipeId }) => {
+const RecipeId: FC<{ recipeId: string }> = ({ recipeId }) => {
   const { data: recipe, isLoading } = api.recipes.getById.useQuery({
     id: recipeId,
   });
@@ -57,6 +58,7 @@ const Recipe: FC<{ recipeId: string }> = ({ recipeId }) => {
             </ul>
           </div>
         </div>
+        <p>page</p>
         {/* <p>favorites: {recipe.favorites} </p> */}
         {/* <button
           onClick={() => mutate({ id: recipeId })}
@@ -69,26 +71,26 @@ const Recipe: FC<{ recipeId: string }> = ({ recipeId }) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const ssg = generateSSGHelper();
+// export const getStaticProps: GetStaticProps = async (context) => {
+//   const ssg = generateSSGHelper();
 
-  const recipeId = context.params?.id;
+//   const recipeId = context.params?.recipeId;
 
-  if (typeof recipeId !== "string")
-    throw new TRPCError({ code: "BAD_REQUEST" });
+//   if (typeof recipeId !== "string")
+//     throw new TRPCError({ code: "BAD_REQUEST" });
 
-  await ssg.recipes.getById.prefetch({ id: recipeId });
+//   await ssg.recipes.getById.prefetch({ id: recipeId });
 
-  return {
-    props: {
-      trpcState: ssg.dehydrate(),
-      recipeId,
-    },
-  };
-};
+//   return {
+//     props: {
+//       trpcState: ssg.dehydrate(),
+//       recipeId,
+//     },
+//   };
+// };
 
-export const getStaticPaths = () => {
-  return { paths: [], fallback: "blocking" };
-};
+// export const getStaticPaths = () => {
+//   return { paths: [], fallback: "blocking" };
+// };
 
-export default Recipe;
+export default RecipeId;
