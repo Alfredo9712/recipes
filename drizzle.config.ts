@@ -4,6 +4,7 @@ import * as dotenv from "dotenv";
 dotenv.config({
   path: ".env.development.local",
 });
+
 //new to drizzle-kit https://orm.drizzle.team/kit-docs/upgrade-21
 
 export default defineConfig({
