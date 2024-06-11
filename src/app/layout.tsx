@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import "./globals.css";
+import { cn } from "@/lib/utils";
+
 import AuthProvider from "@/components/providers/AuthProvider";
 
 const nunito = Nunito({
@@ -21,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <AuthProvider>
-        <body className={nunito.className}>{children}</body>
+        <body className={cn(nunito.className)}>{children}</body>
       </AuthProvider>
     </html>
   );
