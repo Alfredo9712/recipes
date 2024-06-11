@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import { Button } from "@/components/ui/button";
+
 import { signIn } from "../../auth";
 
 export default function Home() {
@@ -10,7 +12,7 @@ export default function Home() {
         await signIn();
       }}
     >
-      <button type="submit">Sign in</button>
+      <Button type="submit">Sign in</Button>
     </form>
   );
 }

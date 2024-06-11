@@ -23,7 +23,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <AuthProvider>
-        <body className={cn(nunito.className)}>{children}</body>
+        <body className={cn("container bg-[#202124]", nunito.className)}>
+          {children}
+        </body>
       </AuthProvider>
     </html>
   );
