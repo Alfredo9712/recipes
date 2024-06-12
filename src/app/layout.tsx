@@ -27,7 +27,7 @@ export default async function RootLayout({
   const { user } = session || {};
 
   const { name, image } = user || {};
-  console.log(image);
+
   return (
     <html lang="en">
       <AuthProvider>
